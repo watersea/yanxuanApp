@@ -21,6 +21,7 @@ export default {
     })
   },
   created () {
+    this.$store.dispatch('getData')
     console.log(this)
   }
 }
