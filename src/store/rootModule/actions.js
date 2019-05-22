@@ -10,7 +10,7 @@ export default {
       }
     }).then(res => {
       console.log(res)
-      context.commit('test', 10)
+      context.commit('test', 11)
     })
   }
 }
