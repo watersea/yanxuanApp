@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+// import router from '@/router'
 const CancelToken = axios.CancelToken
 const source = CancelToken.source()
 
@@ -15,6 +15,7 @@ const axisoRequest = axios.create({
 })
 // 注销拦截器方法
 // axios.interceptors.request.eject(axisoRequest)
+
 // 请求拦截器
 axisoRequest.interceptors.request.use(function (config) {
   return config

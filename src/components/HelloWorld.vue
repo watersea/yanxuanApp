@@ -22,7 +22,8 @@ export default {
   },
   created () {
     this.$store.dispatch('getData')
-    console.log(this)
+    // console.log(this.$globalVariate)
+    // console.log(this.$globalFun)
   }
 }
 </script>
