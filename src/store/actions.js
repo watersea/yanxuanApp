@@ -1,11 +1,9 @@
-import { test } from './mutations'
 import axios from 'axios'
-
-const actions = {
-    getData(){
-        this.axios.get('https://baidu.com').then(res => {
-            console.log(res)
-        })
-    }
+export default {
+  getData (context) {
+    // axios.get('https://baidu.com').then(res => {
+    //   console.log(res)
+    context.commit('test', 10)
+    // })
+  }
 }
-export default actions

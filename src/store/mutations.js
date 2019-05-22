@@ -1,8 +1,5 @@
-import state from './state'
-
-const mutations = {
-    test(state,title){
-        state.name = title
-    }
+export default {
+  test (state, title) {
+    state.count = title
+  }
 }
-export default mutations

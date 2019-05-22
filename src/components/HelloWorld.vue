@@ -2,11 +2,12 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <h1>{{count}}</h1>
   </div>
 </template>
 
 <script>
-
+import { mapState } from 'vuex'
 export default {
   name: 'HelloWorld',
   data () {
@@ -14,8 +15,14 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+  computed: {
+    ...mapState({
+      count: state => state.count
+    })
+  },
   created () {
-    console.log(this.axios)
+    console.log(this)
+    console.log(this.$store.dispatch('getData'))
   }
 }
 </script>
