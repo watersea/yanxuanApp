@@ -1,23 +1,24 @@
 import axios from 'axios'
 
-axios.defaults.timeout = 30000 // 超时中断请求
-
-axios.defaults.baseURL = 'http://localhost:8888/'
-
-axios.defaults.withCredentials = false
+const CancelToken = axios.CancelToken
+const source = CancelToken.source()
 
 const axisoRequest = axios.create({
-  url: '',
-  headers: {}
+  baseURL: 'http://localhost:8888/',
+  timeout: 30000,
+  withCredentials: false,
+  headers: {},
+  cancelToken: source.token,
+  validateStatus: function (status) {
+    return status >= 200 && status < 300 // 默认的
+  }
 })
-
+// 注销拦截器方法
+// axios.interceptors.request.eject(axisoRequest)
 // 请求拦截器
 axisoRequest.interceptors.request.use(function (config) {
-// 在发送请求之前做些什么
-  console.log(config)
   return config
 }, function (error) {
-// 对请求错误做些什么
   return Promise.reject(error)
 })
 

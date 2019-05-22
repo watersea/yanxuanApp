@@ -5,8 +5,8 @@ export default {
     axisoRequest({
       url: 'json2.php',
       method: 'get',
-      params:{
-        id:123
+      params: {
+        id: 123
       }
     }).then(res => {
       console.log(res)
