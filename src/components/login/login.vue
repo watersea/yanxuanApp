@@ -5,11 +5,11 @@
       <img class="label" src='static/image/icon_00.png' alt="">
       <mt-field label="用户名" placeholder="请输入用户名" complate="off" v-model="userName"></mt-field>
       <mt-field label="密码" placeholder="请输入密码" complate="off" type="password" v-model="passWord"></mt-field>
-      <mt-cell style="color:darkred" title="遇到问题？" is-link>
+      <mt-cell style="color:darkred" title="遇到问题？">
         <span style="color: #333">忘记密码</span>
       </mt-cell>
-      <mt-button type="danger" size="large" class='btn-sty submit'>登录</mt-button>
-      <mt-button size="large" class='btn-sty register' plain>注册</mt-button>
+      <mt-button type="danger" size="large" class='btn-sty submit' @click="userLogin">登录</mt-button>
+      <mt-button size="large" class='btn-sty register' @click="userRegiter" plain>注册</mt-button>
       <div class='third-login'>
         <span class="ospan">
           <img src="/static/image/QQ.png" alt="">
@@ -28,7 +28,9 @@
   </div>
 </template>
 <script>
-import { Field, Button, cell } from 'mint-ui'
+import { Field, Button, cell, Indicator } from 'mint-ui'
+import {mapActions, mapState} from 'vuex'
+
 export default {
   data () {
     return {
@@ -40,6 +42,34 @@ export default {
     Field,
     Button,
     cell
+  },
+  computed: {
+    ...mapState({
+      isSuccess: state => state.isSuccess
+    })
+  },
+  created () {
+    console.log(this.$store)
+  },
+  methods: {
+    ...mapActions([
+      'login'
+    ]),
+    // 用户登录
+    userLogin () {
+      Indicator.open({
+        text: '登录中...',
+        spinnerType: 'fading-circle'
+      })
+      let data = {
+        userName: this.userName,
+        passWord: this.passWord
+      }
+      this.login(data)
+    },
+    userRegiter () {
+      console.log(2)
+    }
   }
 }
 </script>

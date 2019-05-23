@@ -6,12 +6,24 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
       name: 'login',
       component: () => import('@/components/login/login')
+    }, {
+      path: '/home',
+      name: 'home',
+      component: () => import('@/components/main/home')
     }
   ]
 })
+
+// 全局路由拦截
+router.beforeEach((to, from, next) => {
+  console.log(to)
+  next()
+})
+
+export default router
