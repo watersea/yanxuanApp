@@ -1,6 +1,6 @@
 <template>
   <div class="top-bar">
-    <span class='top-bar-l'>
+    <span class='top-bar-l' @click="$router.push('home')">
       <img src="/static/image/icon_home.png" alt="">
     </span>
     <span class='top-bar-m'>
@@ -8,7 +8,7 @@
     </span>
     <span class='top-bar-r'>
       <img class="search" src="/static/image/icon_search.png" alt="">
-      <img class="shop" src="/static/image/icon_shop.png" alt="">
+      <img class="shop" @click="$router.push('home/shopCar')" src="/static/image/icon_shop.png" alt="">
     </span>
   </div>
 </template>
@@ -43,10 +43,6 @@
       width:24/@base;
       margin-right:16/@base
     }
-    .search{
-      vertical-align: text-top;
-    }
   }
-
 }
 </style>

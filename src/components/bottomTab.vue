@@ -1,13 +1,13 @@
 <template>
   <div class='bot-bar'>
-    <router-link 
-      v-for="(item, index) in tabs" 
-      :key="index" 
+    <router-link
+      v-for="(item, index) in tabs"
+      :key="index"
       tag='div'
       class="menu-block"
       :to="item.link">
       <span class="iconfont" :class="item.icon"></span>
-      <span>{{item.name}}</span>  
+      <span>{{item.name}}</span>
     </router-link>
   </div>
 </template>
@@ -15,29 +15,35 @@
 export default {
   data () {
     return {
-      tabs:[
+      num: 0,
+      tabs: [
         {
-            name:'首页',
-            link:'index',
-            icon:'icon-shouye'
+          name: '首页',
+          link: 'index',
+          icon: 'icon-shouye'
         }, {
-            name:'分类',
-            link:'classify',
-            icon:'icon-fenlei'
+          name: '分类',
+          link: 'classify',
+          icon: 'icon-fenlei'
         }, {
-            name:'识物',
-            link:'goods',
-            icon:'icon-14'
+          name: '识物',
+          link: 'goods',
+          icon: 'icon-14'
         }, {
-            name:'购物车',
-            link:'shopCar',
-            icon:'icon-27'
+          name: '购物车',
+          link: 'shopCar',
+          icon: 'icon-27'
         }, {
-            name:'个人',
-            link:'single',
-            icon:'icon-geren'
-        },
+          name: '个人',
+          link: 'single',
+          icon: 'icon-geren'
+        }
       ]
+    }
+  },
+  methods: {
+    changeTab (index) {
+      this.num = index
     }
   }
 }
@@ -64,6 +70,7 @@ export default {
       line-height:22/@base;
     }
   }
+  .router-link-active{
+    color:#b4282d
+  }
 </style>
-
-

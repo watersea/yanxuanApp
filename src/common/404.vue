@@ -1,6 +1,6 @@
 <template>
-  <div class='error500'>
-    <img src="/static/image/500.jpeg" alt="">
+  <div class='error404'>
+    <img src="/static/image/404.gif" alt="">
     <span @click="goback">返回首页</span>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
 }
 </script>
 <style scoped>
-  .error500{
+  .error404{
     background: #000;
     height:100%;
     text-align: center;
@@ -22,7 +22,7 @@ export default {
   }
   img{
     width:100%;
-    margin-top:20%
+    margin-top:40%
   }
   span{
     display: inline-block;
