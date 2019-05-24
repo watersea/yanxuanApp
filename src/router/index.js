@@ -15,7 +15,31 @@ const router = new Router({
     }, {
       path: '/home',
       name: 'home',
-      component: () => import('@/components/main/home')
+      redirect:'/home/index',
+      component: () => import('@/components/home'),
+      children: [
+        {
+          path:'index',
+          name:'index',
+          component: () => import('@/components/main/index/index')
+        },{
+          path:'classify',
+          name:'classify',
+          component: () => import('@/components/main/classify/index')
+        },{
+          path:'goods',
+          name:'goods',
+          component: () => import('@/components/main/goods/index')
+        },{
+          path:'shopCar',
+          name:'shopCar',
+          component: () => import('@/components/main/shopCar/index')
+        },{
+          path:'single',
+          name:'single',
+          component: () => import('@/components/main/single/index')
+        },
+      ]
     }
   ]
 })

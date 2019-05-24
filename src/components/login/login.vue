@@ -48,9 +48,6 @@ export default {
       isSuccess: state => state.isSuccess
     })
   },
-  created () {
-    console.log(this.$store)
-  },
   methods: {
     ...mapActions([
       'login'

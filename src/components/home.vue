@@ -1,0 +1,31 @@
+<template>
+  <div class="container">
+    <div class="content">
+      <router-view></router-view>
+    </div>
+    <bottom-tab></bottom-tab>
+  </div>
+</template>
+<script>
+import bottomTab from './bottomTab'
+export default {
+  data () {
+    return {}
+  },
+  components: {
+    bottomTab
+  }
+}
+</script>
+<style>
+  .container{
+    font-size:14px;
+    text-align: center;
+    display: flex;
+    height:100%;
+    flex-direction: column
+  }
+  .content{
+    flex: 1
+  }
+</style>

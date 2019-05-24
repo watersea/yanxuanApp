@@ -1,6 +1,7 @@
 import axisoRequest from '@/api/request'
 import {Indicator, Toast} from 'mint-ui'
 import router from '@/router'
+
 export default {
   login (context, data) {
     axisoRequest({
@@ -21,18 +22,6 @@ export default {
       }
     }).catch(error => {
       console.log(error)
-    })
-  },
-  getData (context) {
-    axisoRequest({
-      url: 'json2.php',
-      method: 'get',
-      params: {
-        id: 123
-      }
-    }).then(res => {
-      console.log(res)
-      context.commit('test', 11)
     })
   }
 }
