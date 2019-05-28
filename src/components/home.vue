@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="content">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </div>
     <bottom-tab></bottom-tab>
   </div>
@@ -11,6 +13,10 @@ import bottomTab from './bottomTab'
 export default {
   data () {
     return {}
+  },
+  created () {
+    // console.log(this)
+    // console.log(this.$store.dispatch('home/getMenu'))
   },
   components: {
     bottomTab
