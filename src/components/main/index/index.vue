@@ -1,6 +1,6 @@
 <template>
   <div class='main'>
-    <q-top :title="title" v-if="title.length > 0"></q-top>
+    <q-top @onChangeMenu="changeMenu" :title="title" v-if="title.length > 0"></q-top>
     <q-content :banner="bannerImg" v-if="bannerImg.length > 0"></q-content>
   </div>
 </template>
@@ -27,7 +27,10 @@ export default {
   methods: {
     ...mapActions([
       'getMenu'
-    ])
+    ]),
+    changeMenu (index) {
+      this.getMenu(index)
+    }
   },
   components: {
     QTop,

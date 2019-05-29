@@ -13,10 +13,13 @@ export default {
     }
   },
   actions: {
-    getMenu (context) {
+    getMenu (context, index) {
       axisoRequest({
         url: 'banner_top.php',
-        method: 'get'
+        method: 'get',
+        params: {
+          index
+        }
       }).then(res => {
         console.log(res)
         context.commit('GET_MENU', res.data)

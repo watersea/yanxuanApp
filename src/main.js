@@ -5,6 +5,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+// 全局指令
+// eslint-disable-next-line
+import focus from '@/api/globalDirective'
+
 // 全局变量&&函数
 import globalVariate from '@/api/globalVariate'
 import globalFun from '@/api/globalFun'
@@ -17,7 +21,7 @@ import 'mint-ui/lib/style.css'
 import topBar from '@/common/topTab'
 
 Vue.config.productionTip = false
-
+// Vue.use(focus)
 Vue.use(mintUi)
 
 // 全局变量&&全局函数方法 绑定到原型上
