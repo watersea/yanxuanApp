@@ -15,7 +15,7 @@ export default {
   actions: {
     getMenu (context, index) {
       axisoRequest({
-        url: 'banner_top.php',
+        url: '/api',
         method: 'get',
         params: {
           index

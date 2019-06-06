@@ -40,6 +40,15 @@ const router = new Router({
           component: () => import('@/components/main/single/index')
         }
       ]
+    },{
+      path: '/resgiter',
+      name: 'resgiter',
+      component: () => import('@/components/resgiter/resgiter')
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: () => import('@/components/search/search')
     },
     {
       path: '/404',

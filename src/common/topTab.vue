@@ -7,7 +7,7 @@
       <img src="/static/image/icon_title.png" alt="">
     </span>
     <span class='top-bar-r'>
-      <img class="search" src="/static/image/icon_search.png" alt="">
+      <img class="search" @click="$router.push('/search')" src="/static/image/icon_search.png" alt="">
       <img class="shop" @click="$router.push('home/shopCar')" src="/static/image/icon_shop.png" alt="">
     </span>
   </div>

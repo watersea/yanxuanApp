@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-
+import vueCookie from 'vue-cookies'
 // 全局指令
 // eslint-disable-next-line
 import focus from '@/api/globalDirective'
@@ -23,7 +23,8 @@ import topBar from '@/common/topTab'
 Vue.config.productionTip = false
 // Vue.use(focus)
 Vue.use(mintUi)
-
+// vue-cookie
+Vue.use(vueCookie)
 // 全局变量&&全局函数方法 绑定到原型上
 Vue.prototype.$globalVariate = globalVariate
 Vue.prototype.$globalFun = globalFun

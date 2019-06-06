@@ -5,7 +5,7 @@ import router from '@/router'
 export default {
   login (context, data) {
     axisoRequest({
-      url: 'login.php',
+      url: '/api',
       method: 'post',
       data
     }).then(res => {

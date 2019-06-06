@@ -1,14 +1,12 @@
 <template>
-  <div class="login">
+  <div class="user-resgiter">
     <top-bar></top-bar>
     <div class='user-handle'>
       <img class="label" src='static/image/icon_00.png' alt="">
       <mt-field label="用户名" placeholder="请输入用户名" complate="off" v-model="userName"></mt-field>
       <mt-field label="密码" placeholder="请输入密码" complate="off" type="password" v-model="passWord"></mt-field>
-      <mt-cell style="color:darkred" title="遇到问题？">
-        <span style="color: #333">忘记密码</span>
-      </mt-cell>
-      <mt-button type="danger" size="large" class='btn-sty submit' @click="userLogin">登录</mt-button>
+      <mt-field label="确认密码" placeholder="请确认密码" complate="off" type="password" v-model="passWordAgain"></mt-field>
+
       <mt-button size="large" class='btn-sty register' @click="userRegiter" plain>注册</mt-button>
       <div class='third-login'>
         <span class="ospan">
@@ -35,7 +33,8 @@ export default {
   data () {
     return {
       userName: '',
-      passWord: ''
+      passWord: '',
+      passWordAgain:''
     }
   },
   components: {
@@ -49,7 +48,7 @@ export default {
     })
   },
   created () {
-    this.$cookies.set('test', '1212')
+    // this.$cookies.set('test', '1212')
   },
   methods: {
     ...mapActions([
@@ -81,10 +80,12 @@ export default {
 </script>
 <style lang="less" scoped>
 @base:37.5rem;
-.login{
+.user-resgiter{
   position: relative;
   height:100%;
-  background:#f7f7f7;
+  background:#f7f7f7; 
+//   background:url('/static/image/bg.jpg') no-repeat;
+//   background-size:100% 100%;
   .user-handle{
       padding:0 20/@base;
   };
@@ -93,12 +94,10 @@ export default {
     display: block;
     margin: 40/@base auto 50/@base;
   }
-  .submit{
-    background: #b4282d;
-    margin:35/@base 0 25/@base
-  }
   .register{
-    color:#b4282d;
+    margin-top:50/@base;  
+    color:#fff;
+    background-color: #b4282d;
     border-color: #b4282d
   }
 }

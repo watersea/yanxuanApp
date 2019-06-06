@@ -1,7 +1,7 @@
 <template>
   <div class='main'>
-    <q-top @onChangeMenu="changeMenu" :title="title" v-if="title.length > 0"></q-top>
-    <q-content :banner="bannerImg" v-if="bannerImg.length > 0"></q-content>
+    <!-- <q-top @onChangeMenu="changeMenu" :title="title" v-if="title.length > 0"></q-top> -->
+    <!-- <q-content :banner="bannerImg" v-if="bannerImg.length > 0"></q-content> -->
   </div>
 </template>
 <script>
@@ -22,7 +22,7 @@ export default {
     })
   },
   created () {
-    this.getMenu()
+    // this.getMenu()
   },
   methods: {
     ...mapActions([
