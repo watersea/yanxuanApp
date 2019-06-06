@@ -6,8 +6,8 @@
       <mt-field label="用户名" placeholder="请输入用户名" complate="off" v-model="userName"></mt-field>
       <mt-field label="密码" placeholder="请输入密码" complate="off" type="password" v-model="passWord"></mt-field>
       <mt-field label="确认密码" placeholder="请确认密码" complate="off" type="password" v-model="passWordAgain"></mt-field>
-
       <mt-button size="large" class='btn-sty register' @click="userRegiter" plain>注册</mt-button>
+      <mt-button size="large" class='btn-sty go-login' @click="$router.push('/')" plain>已有账号，去登录</mt-button>
       <div class='third-login'>
         <span class="ospan">
           <img src="/static/image/QQ.png" alt="">
@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-import { Field, Button, cell, Indicator } from 'mint-ui'
+import { Field, Button, cell } from 'mint-ui'
 import {mapActions, mapState} from 'vuex'
 
 export default {
@@ -34,7 +34,7 @@ export default {
     return {
       userName: '',
       passWord: '',
-      passWordAgain:''
+      passWordAgain: ''
     }
   },
   components: {
@@ -55,23 +55,6 @@ export default {
       'login'
     ]),
     // 用户登录
-    userLogin () {
-      // Indicator.open({
-      //   text: '登录中...',
-      //   spinnerType: 'fading-circle'
-      // })
-      let data = {
-        userName: this.userName,
-        passWord: this.passWord
-      }
-      if (this.userName && this.passWord) {
-       
-        this.$router.replace('/home/index');
-      }
-
-      console.log(data)
-      // this.login(data)
-    },
     userRegiter () {
       this.$router.push('/resgiter')
     }
@@ -83,11 +66,9 @@ export default {
 .user-resgiter{
   position: relative;
   height:100%;
-  background:#f7f7f7; 
-//   background:url('/static/image/bg.jpg') no-repeat;
-//   background-size:100% 100%;
+  background:#f7f7f7;
   .user-handle{
-      padding:0 20/@base;
+    padding:0 20/@base
   };
   .label{
     width: 96/@base;
@@ -95,11 +76,17 @@ export default {
     margin: 40/@base auto 50/@base;
   }
   .register{
-    margin-top:50/@base;  
+    margin-top:50/@base;
     color:#fff;
     background-color: #b4282d;
     border-color: #b4282d
   }
+}
+.go-login{
+  margin-top:20/@base;
+  color:#fff;
+  background-color: #b4282d;
+  border-color: #b4282d
 }
 .third-login{
   position: absolute;

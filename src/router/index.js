@@ -40,7 +40,7 @@ const router = new Router({
           component: () => import('@/components/main/single/index')
         }
       ]
-    },{
+    }, {
       path: '/resgiter',
       name: 'resgiter',
       component: () => import('@/components/resgiter/resgiter')

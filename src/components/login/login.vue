@@ -57,21 +57,21 @@ export default {
     ]),
     // 用户登录
     userLogin () {
-      // Indicator.open({
-      //   text: '登录中...',
-      //   spinnerType: 'fading-circle'
-      // })
+      Indicator.open({
+        text: '登录中...',
+        spinnerType: 'fading-circle'
+      })
       let data = {
         userName: this.userName,
         passWord: this.passWord
       }
       if (this.userName && this.passWord) {
-       
-        this.$router.replace('/home/index');
+        Indicator.close()
+        this.$router.replace('/home/index')
+      } else {
+        Indicator.close()
+        console.log(data)
       }
-
-      console.log(data)
-      // this.login(data)
     },
     userRegiter () {
       this.$router.push('/resgiter')
