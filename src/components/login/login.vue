@@ -49,7 +49,8 @@ export default {
     })
   },
   created () {
-    this.$cookies.set('test', '1212')
+    this.$store.dispatch('test')
+    // this.$cookies.set('test', '1212')
   },
   methods: {
     ...mapActions([
@@ -57,21 +58,22 @@ export default {
     ]),
     // 用户登录
     userLogin () {
-      Indicator.open({
-        text: '登录中...',
-        spinnerType: 'fading-circle'
-      })
-      let data = {
-        userName: this.userName,
-        passWord: this.passWord
-      }
-      if (this.userName && this.passWord) {
-        Indicator.close()
-        this.$router.replace('/home/index')
-      } else {
-        Indicator.close()
-        console.log(data)
-      }
+      // this.login()
+      // Indicator.open({
+      //   text: '登录中...',
+      //   spinnerType: 'fading-circle'
+      // })
+      // let data = {
+      //   userName: this.userName,
+      //   passWord: this.passWord
+      // }
+      // if (this.userName && this.passWord) {
+      //   Indicator.close()
+      //   this.$router.replace('/home/index')
+      // } else {
+      //   Indicator.close()
+      //   console.log(data)
+      // }
     },
     userRegiter () {
       this.$router.push('/resgiter')

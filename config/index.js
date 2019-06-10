@@ -11,13 +11,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {// 反向代理配置
-      '/api':{
-        target:'http://m.you.163.com/',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      }
+      // '/api':{
+        // target:'http://m.you.163.com/',
+        // target:'http://127.0.0.1:8888/',
+        // changeOrigin: true,
+        // pathRewrite: {
+        //   '^/api': ''
+        // }
+      // }
     },
 
     // Various Dev Server settings

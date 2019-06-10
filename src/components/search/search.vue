@@ -1,10 +1,12 @@
 <template>
   <div class='search'>
-    <mt-search
-    v-model="value"
-    cancel-text="取消"
-    placeholder="请输入商品关键字">
-    </mt-search>
+    <div class='q-search'>
+       <div class="q-input">
+          <img src="/static/image/icon_search.png" alt="">
+          <input type="text" name="" id="" placeholder="请输入商品名称">
+       </div>
+       <span class='q-cancel' @click="$router.go(-1)">取消</span>
+    </div>
     <div class='history-record'>
       <p class='label'>
         <span>历史搜索</span>
@@ -31,15 +33,11 @@
   </div>
 </template>
 <script>
-import { Search } from 'mint-ui'
 export default {
   data () {
     return {
       value: ''
     }
-  },
-  components: {
-    Search
   }
 }
 </script>
@@ -47,20 +45,39 @@ export default {
   .search{
     font-size: 14px
   }
+  .q-search{
+    background: #b4282d;
+    padding:14px 5px;
+    color:#fff;
+  }
+  .q-input{
+    line-height: 30px;
+    display: inline-block;
+    background: #fff;
+    border-radius: 5px;
+    width: 85%;
+    padding-left: 10px;
+    box-sizing: border-box;
+    img{
+      vertical-align: text-top;
+      width: 16px;
+      margin-right:10px
+    }
+    input{
+      width:85%;
+      border-radius: 5px;
+      border:none;
+      height: 30px
+    }
+  }
+  .q-cancel{
+    display: inline-block;
+    width: 12%;
+    text-align: center
+  }
   .mint-search{
     font-size: 14px;
-    height: auto;
-  }
-  /deep/ .mint-searchbar{
-    background: #b4282d
-  }
-  /deep/ .mint-searchbar-cancel{
-      color: #fff
-  }
-  /deep/ .mintui-search{
-    font-size: 20px !important;
-    margin-right: 10px;
-    color: #999
+    height: auto
   }
   .label{
     overflow: hidden;

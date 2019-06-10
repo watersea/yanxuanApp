@@ -3,6 +3,14 @@ import {Indicator, Toast} from 'mint-ui'
 import router from '@/router'
 
 export default {
+  test () {
+    axisoRequest({
+      url: '/api',
+      method: 'get'
+    }).then(res => {
+      console.log(res)
+    })
+  },
   login (context, data) {
     axisoRequest({
       url: '/api',
