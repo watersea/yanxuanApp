@@ -14,7 +14,30 @@
         </div>
       </div>
       <div class="menu-content">
-        <ul>
+        <h4 class="zy-title">我的资产</h4>
+        <div class='zy-box'>
+         <div class='zy-item'>
+           <span>¥0</span>
+           <span>回馈金</span>
+         </div>
+         <div class='zy-item'>
+           <span>0</span>
+           <span>红包</span>
+         </div>
+         <div class='zy-item'>
+           <span>0</span>
+           <span>优惠券</span>
+         </div>
+         <div class='zy-item'>
+           <span>¥0</span>
+           <span>津贴</span>
+         </div>
+         <div class='zy-item'>
+           <span>0</span>
+           <span>礼品卡</span>
+         </div>
+        </div>
+        <ul style="border-top:1px solid  rgba(0,0,0,.15);overflow:hidden">
           <li class="list" v-for="(item, index) in classify" :key="index">
             <p class="bg-img iconfont" :class="item.className"></p>
             <p>{{item.name}}</p>
@@ -65,6 +88,26 @@ export default{
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.zy-title{
+  line-height: 42/@base;
+  text-align: left;
+  padding-left:15/@base;
+  border-bottom: 1px solid #ccc
+}
+.zy-box{
+  display: flex;
+  height:48/@base;
+  padding: 20/@base 0;
+  .zy-item{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    span{
+      line-height: 24/@base;
+      flex: 1
+    }
+  }
+}
 .single{
   font-size:14px;
   height:100%;
@@ -77,6 +120,7 @@ export default{
     box-sizing: border-box;
     padding:15/@base 20/@base;
     line-height: 80/@base;
+    text-align: left;
     .user-header{
       height:100%;
       margin-right:20/@base;
