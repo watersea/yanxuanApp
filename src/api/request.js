@@ -4,7 +4,7 @@ const CancelToken = axios.CancelToken
 const source = CancelToken.source()
 
 const axisoRequest = axios.create({
-  baseURL: 'http://127.0.0.1:8888/',
+  baseURL: 'http://127.0.0.1:8888/api/',
   timeout: 30000,
   withCredentials: false,
   headers: {},

@@ -15,8 +15,6 @@ export default {
     return {}
   },
   created () {
-    // console.log(this)
-    // console.log(this.$store.dispatch('home/getMenu'))
   },
   components: {
     bottomTab
@@ -32,6 +30,7 @@ export default {
     flex-direction: column
   }
   .content{
+    overflow: auto;
     flex: 1
   }
 </style>

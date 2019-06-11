@@ -9,33 +9,33 @@ Vue.use(Router)
 const router = new Router({
   routes: [
     {
-      path: '/',
+      path: '/login',
       name: 'login',
       component: () => import('@/components/login/login')
     }, {
-      path: '/home',
+      path: '/',
       name: 'home',
-      redirect: '/home/index',
+      redirect: '/home/single',
       component: () => import('@/components/home'),
       children: [
         {
-          path: 'index',
+          path: '/home/index',
           name: 'index',
           component: () => import('@/components/main/index/index')
         }, {
-          path: 'classify',
+          path: '/home/classify',
           name: 'classify',
           component: () => import('@/components/main/classify/index')
         }, {
-          path: 'goods',
+          path: '/home/goods',
           name: 'goods',
           component: () => import('@/components/main/goods/index')
         }, {
-          path: 'shopCar',
+          path: '/home/shopCar',
           name: 'shopCar',
           component: () => import('@/components/main/shopCar/index')
         }, {
-          path: 'single',
+          path: '/home/single',
           name: 'single',
           component: () => import('@/components/main/single/index')
         }
@@ -64,13 +64,13 @@ const router = new Router({
 })
 
 // 全局路由拦截
-router.beforeEach((to, from, next) => {
-  let routerName = to.name
-  if (routerName === 'single') {
-    next('/')
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   let routerName = to.name
+//   if (routerName === 'single') {
+//     next('/')
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

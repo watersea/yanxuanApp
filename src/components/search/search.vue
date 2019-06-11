@@ -3,20 +3,17 @@
     <div class='q-search'>
        <div class="q-input">
           <img src="/static/image/icon_search.png" alt="">
-          <input type="text" name="" id="" placeholder="请输入商品名称">
+          <input type="text" name="" id="" placeholder="请输入商品名称" v-model.trim="keyWord" @keydown.13="search">
        </div>
        <span class='q-cancel' @click="$router.go(-1)">取消</span>
     </div>
-    <div class='history-record'>
+    <div class='history-record' v-show="historySearch.length > 0">
       <p class='label'>
         <span>历史搜索</span>
-        <img src="/static/image/del.png" alt="">
+        <img @click="delFun" src="/static/image/del.png" alt="">
       </p>
       <p style="padding:10px 12px">
-        <span class='item'>aj</span>
-        <span class='item'>阿迪</span>
-        <span class='item'>耐克</span>
-        <span class='item'>短袖</span>
+        <span class='item' v-for="(item,index) in historySearch" :key="index">{{item}}</span>
       </p>
     </div>
     <div class='hot-search'>
@@ -24,19 +21,51 @@
         <span>热门搜索</span>
       </p>
       <p style="padding:10px 12px">
-        <span class='item'>aj</span>
-        <span class='item'>阿迪</span>
-        <span class='item'>耐克</span>
-        <span class='item'>短袖</span>
+        <a class='item' v-for="(item,index) in hots" :key="index" :href="item.link">
+          <span>{{item.keyWord}}</span>
+        </a>
       </p>
     </div>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      value: ''
+      keyWord: '',
+      value: '',
+      historySearch: []
+    }
+  },
+  computed: {
+    ...mapState({
+      hots: state => state.home.hots
+    })
+  },
+  created () {
+    this.$store.dispatch('home/getHotSearch')
+    this.getHistory()
+  },
+  methods: {
+    getHistory () {
+      let localHistory = localStorage.getItem('wy_keyWord')
+      if (localHistory) {
+        this.historySearch = JSON.parse(localHistory)
+      }
+    },
+    delFun () {
+      localStorage.removeItem('wy_keyWord')
+      this.historySearch = []
+    },
+    search () {
+      if (this.keyWord.length < 1) {
+        return false
+      }
+      if (!this.historySearch.includes(this.keyWord)) {
+        this.historySearch.push(this.keyWord)
+        localStorage.setItem('wy_keyWord', JSON.stringify(this.historySearch))
+      }
     }
   }
 }

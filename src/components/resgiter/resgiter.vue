@@ -3,9 +3,9 @@
     <top-bar></top-bar>
     <div class='user-handle'>
       <img class="label" src='static/image/icon_00.png' alt="">
-      <mt-field label="用户名" placeholder="请输入用户名" complate="off" v-model="userName"></mt-field>
-      <mt-field label="密码" placeholder="请输入密码" complate="off" type="password" v-model="passWord"></mt-field>
-      <mt-field label="确认密码" placeholder="请确认密码" complate="off" type="password" v-model="passWordAgain"></mt-field>
+      <mt-field label="用户名" placeholder="请输入用户名" complate="off" v-model.trim="userName"></mt-field>
+      <mt-field label="密码" placeholder="请输入密码" complate="off" type="password" v-model.trim="passWord"></mt-field>
+      <mt-field label="确认密码" placeholder="请确认密码" complate="off" type="password" v-model.trim="passWordAgain"></mt-field>
       <mt-button size="large" class='btn-sty register' @click="userRegiter" plain>注册</mt-button>
       <mt-button size="large" class='btn-sty go-login' @click="$router.push('/')" plain>已有账号，去登录</mt-button>
       <div class='third-login'>
@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-import { Field, Button, cell } from 'mint-ui'
+import { Field, Button, cell, Toast } from 'mint-ui'
 import {mapActions, mapState} from 'vuex'
 
 export default {
@@ -56,7 +56,39 @@ export default {
     ]),
     // 用户登录
     userRegiter () {
-      this.$router.push('/resgiter')
+      if (this.userName.length < 1) {
+        Toast({
+          message: '请输入用户名！',
+          position: 'middle'
+        })
+        return
+      }
+      if (this.passWord.length < 1) {
+        Toast({
+          message: '请输入密码！',
+          position: 'middle'
+        })
+        return
+      }
+      if (this.passWordAgain.length < 1) {
+        Toast({
+          message: '请确认密码！',
+          position: 'middle'
+        })
+        return
+      }
+      if (this.passWord !== this.passWordAgain) {
+        Toast({
+          message: '两次密码输入不一致！',
+          position: 'middle'
+        })
+        return
+      }
+      let data = {
+        userName: this.userName,
+        passWord: this.passWord
+      }
+      this.$store.dispatch('resgiter', data)
     }
   }
 }

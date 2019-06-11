@@ -3,13 +3,13 @@
     <top-bar></top-bar>
     <div class='user-handle'>
       <img class="label" src='static/image/icon_00.png' alt="">
-      <mt-field label="用户名" placeholder="请输入用户名" complate="off" v-model="userName"></mt-field>
-      <mt-field label="密码" placeholder="请输入密码" complate="off" type="password" v-model="passWord"></mt-field>
+      <mt-field label="用户名" placeholder="请输入用户名" complate="off" v-model.trim="userName"></mt-field>
+      <mt-field label="密码" placeholder="请输入密码" complate="off" type="password" v-model.trim="passWord"></mt-field>
       <mt-cell style="color:darkred" title="遇到问题？">
         <span style="color: #333">忘记密码</span>
       </mt-cell>
       <mt-button type="danger" size="large" class='btn-sty submit' @click="userLogin">登录</mt-button>
-      <mt-button size="large" class='btn-sty register' @click="userRegiter" plain>注册</mt-button>
+      <mt-button size="large" class='btn-sty register' @click="$router.push('/resgiter')" plain>注册</mt-button>
       <div class='third-login'>
         <span class="ospan">
           <img src="/static/image/QQ.png" alt="">
@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import { Field, Button, cell, Indicator } from 'mint-ui'
+import { Field, Button, cell, Indicator, Toast } from 'mint-ui'
 import {mapActions, mapState} from 'vuex'
 
 export default {
@@ -49,7 +49,6 @@ export default {
     })
   },
   created () {
-    this.$store.dispatch('test')
     // this.$cookies.set('test', '1212')
   },
   methods: {
@@ -58,25 +57,29 @@ export default {
     ]),
     // 用户登录
     userLogin () {
-      // this.login()
-      // Indicator.open({
-      //   text: '登录中...',
-      //   spinnerType: 'fading-circle'
-      // })
-      // let data = {
-      //   userName: this.userName,
-      //   passWord: this.passWord
-      // }
-      // if (this.userName && this.passWord) {
-      //   Indicator.close()
-      //   this.$router.replace('/home/index')
-      // } else {
-      //   Indicator.close()
-      //   console.log(data)
-      // }
-    },
-    userRegiter () {
-      this.$router.push('/resgiter')
+      if (this.userName.length < 1) {
+        Toast({
+          message: '请输入账号！',
+          position: 'middle'
+        })
+        return
+      }
+      if (this.passWord.length < 1) {
+        Toast({
+          message: '请输入密码！',
+          position: 'middle'
+        })
+        return
+      }
+      let data = {
+        userName: this.userName,
+        passWord: this.passWord
+      }
+      Indicator.open({
+        text: '登录中...',
+        spinnerType: 'fading-circle'
+      })
+      this.login(data)
     }
   }
 }
