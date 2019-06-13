@@ -11,6 +11,11 @@ export default {
 </script>
 
 <style>
+::-webkit-scrollbar{
+  width:0;
+  height:0;
+  background: transparent
+}
 #app {
   height:100%;
 }

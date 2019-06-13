@@ -4,13 +4,13 @@
       <div class="logo">
         <img src="/static/image/icon_title.png" alt="">
       </div>
-      <div class="search">
+      <div class="search" @click="$router.push('/search')">
         <div class="input">
           <img src="/static/image/icon_search.png" alt="">
           搜索商品，共{{shopNum}}款好物
         </div>
       </div>
-      <div class="user">
+      <div class="user" @click="isLogin">
         登录
       </div>
     </div>
@@ -64,6 +64,9 @@ export default {
     changeMenu (index) {
       this.num = index
       this.$emit('onChangeMenu', index)
+    },
+    isLogin () {
+      this.$router.push('/login')
     }
   }
 }

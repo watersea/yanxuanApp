@@ -5,9 +5,17 @@ export default {
   state: {
     title: [],
     bannerImg: [],
-    hots: []
+    hots: [],
+    menuList: [],
+    menuCon: [],
+    isSecond: false
   },
   mutations: {
+    GET_CLASSIFY (state, data) {
+      state.menuList = data.list
+      state.menuCon = data.content
+      state.isSecond = data.isSecond
+    },
     GET_HOT (state, data) {
       state.hots = data
     },
@@ -17,6 +25,18 @@ export default {
     }
   },
   actions: {
+    getGoodClassify (context, index) {
+      axisoRequest({
+        url: '/classify.php',
+        method: 'get',
+        params: {
+          index
+        }
+      }).then(res => {
+        context.commit('GET_CLASSIFY', res.data.data)
+        console.log(res)
+      })
+    },
     getHotSearch (context) {
       axisoRequest({
         url: '/hotSearch.php',

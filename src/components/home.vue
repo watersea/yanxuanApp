@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="content">
+    <div class="content" ref='content'>
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
@@ -30,7 +30,7 @@ export default {
     flex-direction: column
   }
   .content{
-    overflow: auto;
+    overflow: hidden;
     flex: 1
   }
 </style>

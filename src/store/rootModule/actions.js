@@ -12,7 +12,7 @@ export default {
       Indicator.close()
       let code = res.data.code
       if (code === 200) {
-        router.push('home')
+        router.push('/')
       } else {
         Toast({
           message: '登录失败，' + res.data.msg + '!',
@@ -31,7 +31,7 @@ export default {
       data
     }).then(res => {
       if (res.data.code === 200) {
-        router.push('home')
+        router.push('/')
       } else {
         Toast({
           message: res.data.msg + '!',

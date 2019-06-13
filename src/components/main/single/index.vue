@@ -2,7 +2,7 @@
     <div class="single">
       <div class="user-info">
         <div class="user-header">
-          <img src="https://yanxuan.nosdn.127.net/e876989a55e569be1450567c93333747.jpg" alt="">
+          <img src="/static/image/default_header.jpg" alt="">
         </div>
         <div class="user-detail">
           <p class="user-name">
