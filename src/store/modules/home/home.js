@@ -34,7 +34,18 @@ export default {
         }
       }).then(res => {
         context.commit('GET_CLASSIFY', res.data.data)
-        console.log(res)
+        // tab切换做本地存储
+        let obj = {}
+        let lindex = index ? 'L' + index : 'L0'
+        obj[lindex] = res.data.data
+        let isHas = JSON.parse(localStorage.getItem('wy_classify_data'))
+        if (isHas) {
+          isHas[lindex] = obj[lindex]
+          localStorage.setItem('wy_classify_data', JSON.stringify(isHas))
+        } else {
+          localStorage.setItem('wy_classify_data', JSON.stringify(obj))
+        }
+        // console.log(res)
       })
     },
     getHotSearch (context) {

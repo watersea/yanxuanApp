@@ -1,5 +1,4 @@
 <template>
- <keep-alive>
   <div class='classify'>
     <search></search>
     <div class='content'>
@@ -38,12 +37,11 @@
       </div>
     </div>
   </div>
- </keep-alive>
 </template>
 <script>
 import search from '@/common/search'
 import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('home')
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers('home')
 
 export default {
   data () {
@@ -65,15 +63,26 @@ export default {
     this.getClassify()
   },
   methods: {
+    ...mapMutations([
+      'GET_CLASSIFY'
+    ]),
     ...mapActions({
       getClassify: 'getGoodClassify'
     }),
     changeMenus (index) {
+      // 多次点击同一个tab不发送请求
       if (this.num === index) {
         return
       }
       this.num = index
-      this.getClassify(index)
+      let localData = localStorage.getItem('wy_classify_data')
+      let formatData = JSON.parse(localData)
+      let lindex = 'L' + index
+      if (formatData[lindex]) {
+        this.GET_CLASSIFY(formatData[lindex])
+      } else {
+        this.getClassify(index)
+      }
     }
   }
 }
