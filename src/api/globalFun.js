@@ -1,8 +1,12 @@
 // 全局方法
-const globalFun = {
+export const globalFun = {
   test () {
     console.log(111)
     return 1
   }
 }
-export default globalFun
+export const test = {
+  install: function () {
+    console.log('ok')
+  }
+}

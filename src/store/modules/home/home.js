@@ -38,6 +38,7 @@ export default {
         let obj = {}
         let lindex = index ? 'L' + index : 'L0'
         obj[lindex] = res.data.data
+        // storage 存储方式
         let isHas = JSON.parse(localStorage.getItem('wy_classify_data'))
         if (isHas) {
           isHas[lindex] = obj[lindex]
@@ -45,7 +46,6 @@ export default {
         } else {
           localStorage.setItem('wy_classify_data', JSON.stringify(obj))
         }
-        // console.log(res)
       })
     },
     getHotSearch (context) {

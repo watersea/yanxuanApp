@@ -1,9 +1,22 @@
 import Vue from 'vue'
 
-export const focus = Vue.directive('focus', {
-  // 当被绑定的元素插入到 DOM 中时……
-  inserted: function (el) {
-    // 聚焦元素
-    el.focus()
+// 图片占位懒加载
+export const lazyImg = Vue.directive('lazyImg', {
+  inserted: function (el, val) {
+    /* eslint-disable no-new */
+    new LazyCommon(el, val)
+  },
+  update: function (el, val) {
+    /* eslint-disable no-new */
+    new LazyCommon(el, val)
   }
 })
+// 懒加载图片公共函数
+function LazyCommon (el, val) {
+  let url = val.value
+  let img = new Image()
+  img.src = url
+  img.onload = function () {
+    el.src = url
+  }
+}

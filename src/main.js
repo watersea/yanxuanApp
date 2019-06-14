@@ -5,13 +5,15 @@ import App from './App'
 import router from './router'
 import store from './store'
 import vueCookie from 'vue-cookies'
+import VueLazyload from 'vue-lazyload'
+
 // 全局指令
 // eslint-disable-next-line
-import focus from '@/api/globalDirective'
+import lazyImg from '@/api/globalDirective'
 
 // 全局变量&&函数
 import globalVariate from '@/api/globalVariate'
-import globalFun from '@/api/globalFun'
+import { globalFun } from '@/api/globalFun'
 
 // mint UI 引入
 import mintUi from 'mint-ui'
@@ -25,6 +27,9 @@ Vue.config.productionTip = false
 Vue.use(mintUi)
 // vue-cookie
 Vue.use(vueCookie)
+// vue-Lazyload
+Vue.use(VueLazyload)
+
 // 全局变量&&全局函数方法 绑定到原型上
 Vue.prototype.$globalVariate = globalVariate
 Vue.prototype.$globalFun = globalFun

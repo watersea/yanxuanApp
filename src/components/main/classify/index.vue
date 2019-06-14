@@ -19,8 +19,8 @@
           <!-- 不带分类的 -->
           <ul v-if="!isSecond">
             <li v-for="(item,index) in menuCon.category" :key="index">
-                <img style="margin-bottom:10px" :src="item.bannerUrl" alt="">
-                <span>{{item.name}}</span>
+              <img style="margin-bottom:10px" :src="loadingImgSrc" v-lazyImg="item.bannerUrl" alt="">
+              <span>{{item.name}}</span>
             </li>
           </ul>
           <!-- 带有分类的 -->
@@ -28,7 +28,7 @@
             <p class="label">{{item.name}}</p>
             <ul>
               <li v-for="(items,index) in item.list" :key="index">
-                <img style="margin-bottom:10px" :src="items.bannerUrl" alt="">
+              <img style="margin-bottom:10px" :src="loadingImgSrc" alt="" v-lazyImg="items.bannerUrl">
                 <span>{{items.name}}</span>
               </li>
             </ul>
@@ -46,7 +46,8 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers('home')
 export default {
   data () {
     return {
-      num: 0
+      num: 0,
+      loadingImgSrc: '/static/image/default.jpg'
     }
   },
   components: {
@@ -75,6 +76,13 @@ export default {
         return
       }
       this.num = index
+      /*
+      * H5 Storge本地缓存方法
+      * 一种基于storage实现过期时间的方法
+      * 以此为例：我们在存储本地数据初始创建的时候，获取本地时间转时间戳，设置相应的字段与数据一起保存
+      * 这里我们只在第一次创建storage的时候保存时间，在获取storage的时候，获取本地时间与缓存时间做对比
+      * 当与我们预期的时间不符的时候，重新发送数据请求，removeItem()更新我们的本地数据缓存
+      */
       let localData = localStorage.getItem('wy_classify_data')
       let formatData = JSON.parse(localData)
       let lindex = 'L' + index
@@ -154,7 +162,8 @@ export default {
         float: left;
         span{
           display: inline-block;
-          width: 100%
+          width: 100%;
+          overflow: hidden
         }
       }
       img{
