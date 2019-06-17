@@ -19,7 +19,7 @@
           <!-- 不带分类的 -->
           <ul v-if="!isSecond">
             <li v-for="(item,index) in menuCon.category" :key="index">
-              <img style="margin-bottom:10px" :src="loadingImgSrc" v-lazyImg="item.bannerUrl" alt="">
+              <img @click="jumpDetail(menuCon.category,0,item.name)" style="margin-bottom:10px" :src="loadingImgSrc" v-lazyImg="item.bannerUrl" alt="">
               <span>{{item.name}}</span>
             </li>
           </ul>
@@ -27,8 +27,8 @@
           <div v-else v-for="(item,index) in menuCon.category" :key="index">
             <p class="label">{{item.name}}</p>
             <ul>
-              <li v-for="(items,index) in item.list" :key="index">
-              <img style="margin-bottom:10px" :src="loadingImgSrc" alt="" v-lazyImg="items.bannerUrl">
+              <li v-for="(items,k) in item.list" :key="k" >
+                <img @click="jumpDetail(menuCon.category,1,items.name)" style="margin-bottom:10px" :src="loadingImgSrc" alt="" v-lazyImg="items.bannerUrl">
                 <span>{{items.name}}</span>
               </li>
             </ul>
@@ -46,8 +46,7 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers('home')
 export default {
   data () {
     return {
-      num: 0,
-      loadingImgSrc: '/static/image/default.jpg'
+      num: 0
     }
   },
   components: {
@@ -61,6 +60,7 @@ export default {
     ])
   },
   created () {
+    this.loadingImgSrc = this.$store.state
     this.getClassify()
   },
   methods: {
@@ -70,6 +70,33 @@ export default {
     ...mapActions({
       getClassify: 'getGoodClassify'
     }),
+    jumpDetail (lists, type, name) {
+      let titles = []
+      if (type === 0) {
+        lists.forEach(ele => {
+          titles.push(ele.name)
+        })
+      } else {
+        lists.forEach(ele => {
+          (ele.list).forEach(item => {
+            titles.push(item.name)
+          })
+        })
+      }
+      /*
+      * 运用localstorage解决params刷新值丢失问题，
+      * 还有另一种方法  就是跳转到goodshow页面时触发getClassify请求，前提是跳转时要带着
+      * 左侧的index值
+      *
+      */
+      localStorage.setItem('wy_goodsTitle', JSON.stringify(titles))
+      this.$router.push({
+        name: 'good_show',
+        query: {
+          name: encodeURIComponent(name)
+        }
+      })
+    },
     changeMenus (index) {
       // 多次点击同一个tab不发送请求
       if (this.num === index) {

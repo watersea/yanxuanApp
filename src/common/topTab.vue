@@ -1,6 +1,6 @@
 <template>
   <div class="top-bar">
-    <span class='top-bar-l' @click="$router.push('home')">
+    <span class='top-bar-l' @click="$router.push('home/index')">
       <img src="/static/image/icon_home.png" alt="">
     </span>
     <span class='top-bar-m'>

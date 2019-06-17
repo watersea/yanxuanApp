@@ -25,7 +25,8 @@ export default {
     width: 100%;
     background: #fff;
     border-radius: 6px;
-    line-height: 32/@base
+    line-height: 32/@base;
+    background: #f5f5f5
   }
 }
 </style>

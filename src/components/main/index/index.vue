@@ -1,25 +1,29 @@
 <template>
   <div class='main'>
-    <q-top @onChangeMenu="changeMenu" :title="title" v-if="title.length > 0"></q-top>
+    <q-top></q-top>
+    <scroll-nav-bar :title="title" v-if="title.length > 0"></scroll-nav-bar>
     <!-- <q-content :banner="bannerImg" v-if="bannerImg.length > 0"></q-content> -->
   </div>
 </template>
 <script>
 import QTop from './Qtop'
 import QContent from './Qcontent'
-
+import scrollNavBar from '@/common/scrollNavBar'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('home')
 
 export default {
   data () {
-    return {
-      title: ['推荐', '居家生活', '服饰鞋包', '美食酒水', '个护清洁', '母婴亲子', '运动旅行', '数码家电', '全球特色']
-    }
+    return {}
+  },
+  components: {
+    QTop,
+    QContent,
+    scrollNavBar
   },
   computed: {
     ...mapState({
-      // title: state => state.title,
+      title: state => state.title,
       bannerImg: state => state.bannerImg
     })
   },
@@ -29,14 +33,10 @@ export default {
   methods: {
     ...mapActions([
       'getMenu'
-    ]),
-    changeMenu (index) {
-      this.getMenu(index)
-    }
-  },
-  components: {
-    QTop,
-    QContent
+    ])
+    // changeMenu (index) {
+    //   this.getMenu(index)
+    // }
   }
 }
 </script>

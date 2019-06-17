@@ -51,6 +51,11 @@ const router = new Router({
       component: () => import('@/components/search/search')
     },
     {
+      path: '/good_show',
+      name: 'good_show',
+      component: () => import('@/common/goodShow')
+    },
+    {
       path: '/404',
       name: 'error404',
       component: () => import('@/common/404')
@@ -64,13 +69,13 @@ const router = new Router({
 })
 
 // 全局路由拦截
-// router.beforeEach((to, from, next) => {
-//   let routerName = to.name
-//   if (routerName === 'single') {
-//     next('/')
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  let routerName = to.name
+  if (routerName === 'single') {
+    next('/login')
+  } else {
+    next()
+  }
+})
 
 export default router
