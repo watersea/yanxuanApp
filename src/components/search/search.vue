@@ -2,7 +2,7 @@
   <div class='search'>
     <div class='q-search'>
        <div class="q-input">
-          <img src="/static/image/icon_search.png" alt="">
+          <img src="static/image/icon_search.png" alt="">
           <input type="text" name="" id="" placeholder="请输入商品名称" v-model.trim="keyWord" @keydown.13="search">
        </div>
        <span class='q-cancel' @click="$router.go(-1)">取消</span>
@@ -10,7 +10,7 @@
     <div class='history-record' v-show="historySearch.length > 0">
       <p class='label'>
         <span>历史搜索</span>
-        <img @click="delFun" src="/static/image/del.png" alt="">
+        <img @click="delFun" src="static/image/del.png" alt="">
       </p>
       <p style="padding:10px 12px">
         <span class='item' v-for="(item,index) in historySearch" :key="index">{{item}}</span>

@@ -2,11 +2,11 @@
   <div class="home-header">
     <div class='home-label'>
       <div class="logo">
-        <img src="/static/image/icon_title.png" alt="">
+        <img src="static/image/icon_title.png" alt="">
       </div>
       <div class="search" @click="$router.push('/search')">
         <div class="input">
-          <img src="/static/image/icon_search.png" alt="">
+          <img src="static/image/icon_search.png" alt="">
           搜索商品，共{{shopNum}}款好物
         </div>
       </div>

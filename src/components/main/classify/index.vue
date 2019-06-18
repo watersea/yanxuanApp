@@ -60,7 +60,7 @@ export default {
     ])
   },
   created () {
-    this.loadingImgSrc = this.$store.state
+    this.loadingImgSrc = this.$store.state.home.loadingImgSrc
     this.getClassify()
   },
   methods: {

@@ -5,8 +5,19 @@ export const globalFun = {
     return 1
   }
 }
-export const test = {
+// 全局监听input失去焦点事件
+export const inputBlur = {
   install: function () {
-    console.log('ok')
+    window.onload = () => {
+      let input = [...document.getElementsByTagName('input')]
+      input.forEach(ele => {
+        ele.onblur = () => {
+          setTimeout(() => {
+            console.log(1)
+            window.scrollTo(0, 0)
+          }, 100)
+        }
+      })
+    }
   }
 }

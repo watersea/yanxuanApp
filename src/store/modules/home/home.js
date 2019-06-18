@@ -3,7 +3,7 @@ import axisoRequest from '@/api/request'
 export default {
   namespaced: true,
   state: {
-    loadingImgSrc: '/static/image/default.jpg',
+    loadingImgSrc: 'static/image/default.jpg',
     title: ['推荐', '居家生活', '服饰鞋包', '美食酒水', '个护清洁', '母婴亲子', '运动旅行', '数码家电', '全球特色'],
     bannerImg: [],
     hots: [],

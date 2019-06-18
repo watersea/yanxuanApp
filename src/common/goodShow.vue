@@ -5,21 +5,21 @@
     <div class="content">
       <div class='good-item'>
         <div class='good-pic'>
-          <img class="good-img" src="http://yanxuan.nosdn.127.net/459c50762747d5b3712a919014f05403.png?imageView&quality=65&thumbnail=330x330" alt="">  
+          <!-- <img class="good-img" src="http://yanxuan.nosdn.127.net/459c50762747d5b3712a919014f05403.png?imageView&quality=65&thumbnail=330x330" alt="">   -->
         </div>
         <p class="good-desc">desc</p>
         <p class="good-price">¥59.9</p>
       </div>
       <div class='good-item'>
         <div class='good-pic'>
-          <img class="good-img" src="http://yanxuan.nosdn.127.net/e7ce14675ba23b7f76fb350335e11aaa.png?imageView&quality=65&thumbnail=330x330" alt="">  
+          <!-- <img class="good-img" src="http://yanxuan.nosdn.127.net/e7ce14675ba23b7f76fb350335e11aaa.png?imageView&quality=65&thumbnail=330x330" alt="">   -->
         </div>
         <p class="good-desc">desc</p>
         <p class="good-price">¥59.9</p>
       </div>
       <div class='good-item'>
         <div class='good-pic'>
-          <img class="good-img" src="http://yanxuan.nosdn.127.net/459c50762747d5b3712a919014f05403.png?imageView&quality=65&thumbnail=330x330" alt="">  
+          <!-- <img class="good-img" src="http://yanxuan.nosdn.127.net/459c50762747d5b3712a919014f05403.png?imageView&quality=65&thumbnail=330x330" alt="">   -->
         </div>
         <p class="good-desc">desc</p>
         <p class="good-price">¥59.9</p>

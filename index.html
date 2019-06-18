@@ -2,12 +2,36 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>网易严选 - 以严谨的态度，为中国消费者甄选天下优品</title>
     <link rel="shortcut icon" href="http://m.you.163.com/favicon.ico">
-    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="static/css/reset.css">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1207632_9bnt09mlnbb.css">
-    <script src="/static/js/lib-flexible.js"></script>
+    <script src="static/js/lib-flexible.js"></script>
+    <script>
+      // ios防止input点击放大问题
+      window.onload = function () {
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+        document.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+        });
+        document.addEventListener('touchstart', function (event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        });
+        var lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            var now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    };
+    </script>
   </head>
   <body>
     <div id="app"></div>

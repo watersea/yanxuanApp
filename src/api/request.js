@@ -1,12 +1,16 @@
 import axios from 'axios'
-import { Toast } from 'mint-ui'
+// import { Toast } from 'mint-ui'
 
 // import router from '@/router'
 const CancelToken = axios.CancelToken
 const source = CancelToken.source()
-
+console.log(process.env)
+let env = process.env.NODE_ENV
+console.log(env)
+// eslint-disable-next-line
+let baseUrl = env === 'development' ? 'http://127.0.0.1:8888/api' : 'https://www.jstrue.com/wangyi/api/'
 const axisoRequest = axios.create({
-  baseURL: 'http://127.0.0.1:8888/api/',
+  baseURL: baseUrl,
   timeout: 30000,
   withCredentials: false,
   headers: {},
@@ -18,14 +22,14 @@ const axisoRequest = axios.create({
 // 注销拦截器方法
 // axios.interceptors.request.eject(axisoRequest)
 
-let instance = ''
+// let instance = ''
 // 请求拦截器
 axisoRequest.interceptors.request.use(function (config) {
-  instance = Toast({
-    message: '提示',
-    position: 'middle',
-    duration: 100
-  })
+  // instance = Toast({
+  //   message: '提示',
+  //   position: 'middle',
+  //   duration: 100
+  // })
   return config
 }, function (error) {
   return Promise.reject(error)
@@ -33,15 +37,15 @@ axisoRequest.interceptors.request.use(function (config) {
 
 // 响应拦截器
 axisoRequest.interceptors.response.use(function (response) {
-  if (response.data.code <= 200) {
-    // instance = Toast({
-    //   message: '成功',
-    //   position: 'middle',
-    //   duration: 100000
-    // })
-  } else {
-    instance.close()
-  }
+  // if (response.data.code <= 200) {
+  // instance = Toast({
+  //   message: '成功',
+  //   position: 'middle',
+  //   duration: 100000
+  // })
+  // } else {
+  //   instance.close()
+  // }
   return response
 }, function (error) {
   return Promise.reject(error)

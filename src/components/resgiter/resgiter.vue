@@ -10,15 +10,15 @@
       <mt-button size="large" class='btn-sty go-login' @click="$router.push('/')" plain>已有账号，去登录</mt-button>
       <div class='third-login'>
         <span class="ospan">
-          <img src="/static/image/QQ.png" alt="">
+          <img src="static/image/QQ.png" alt="">
           <span>QQ</span>
         </span>
         <span class="ospan">
-          <img src="/static/image/WB.png" alt="">
+          <img src="static/image/WB.png" alt="">
           <span>微博</span>
         </span>
         <span class="ospan" style="border:none">
-          <img src="/static/image/WX.png" alt="">
+          <img src="static/image/WX.png" alt="">
           <span>微信</span>
         </span>
       </div>
