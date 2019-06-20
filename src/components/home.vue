@@ -15,6 +15,12 @@ export default {
     return {}
   },
   created () {
+    if (this.$cookies.isKey('wy_login_access')) {
+      let loginInfo = this.$cookies.get('wy_login_access')
+      let userName = loginInfo.userName
+      this.$store.commit('getUserName', userName)
+    }
+    console.log(this.$cookies.isKey('wy_login_access'))
   },
   components: {
     bottomTab

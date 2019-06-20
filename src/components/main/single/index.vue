@@ -2,7 +2,7 @@
     <div class="single">
       <div class="user-info">
         <div class="user-header">
-          <img src="/static/image/default_header.jpg" alt="">
+          <img src="static/image/default_header.jpg" alt="">
         </div>
         <div class="user-detail">
           <p class="user-name">
@@ -44,7 +44,7 @@
           </li>
         </ul>
       </div>
-      <div id="quit" class="border-top">退出登录</div>
+      <div id="quit" class="border-top" @click="loginOut">退出登录</div>
     </div>
 </template>
 <script>
@@ -64,6 +64,13 @@ export default{
         {name: '帮助与客服', className: 'icon-kefu'},
         {name: '意见反馈', className: 'icon-yijianfankui'}
       ]
+    }
+  },
+  methods: {
+    loginOut () {
+      this.$cookies.remove('wy_login_access')
+      this.$router.replace('/login')
+      this.$store.commit('getUserName','登录')
     }
   }
 }

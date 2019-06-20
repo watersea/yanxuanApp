@@ -30,7 +30,18 @@
             }
             lastTouchEnd = now;
         }, false);
+        
+      let input = [...document.getElementsByTagName('input')]
+      input.forEach(ele => {
+        ele.onblur = () => {
+          setTimeout(() => {
+            window.scrollTo(0, 0)
+          }, 100)
+        }
+      })
     };
+
+   
     </script>
   </head>
   <body>

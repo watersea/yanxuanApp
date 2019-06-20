@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="user" @click="isLogin">
-        登录
+        {{$store.state.userName}}
       </div>
     </div>
   </div>

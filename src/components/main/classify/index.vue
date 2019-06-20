@@ -26,7 +26,7 @@
           <!-- 带有分类的 -->
           <div v-else v-for="(item,index) in menuCon.category" :key="index">
             <p class="label">{{item.name}}</p>
-            <ul>
+            <ul style="display:flex;flex-wrap:wrap">
               <li v-for="(items,k) in item.list" :key="k" >
                 <img @click="jumpDetail(menuCon.category,1,items.name)" style="margin-bottom:10px" :src="loadingImgSrc" alt="" v-lazyImg="items.bannerUrl">
                 <span>{{items.name}}</span>
@@ -189,7 +189,7 @@ export default {
         float: left;
         span{
           display: inline-block;
-          width: 100%;
+          width: 80%;
           overflow: hidden
         }
       }

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import vueCookies from 'vue-cookies'
 // 组件引用部分
 // import login from '@/components/login/login'
 
@@ -72,7 +72,11 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   let routerName = to.name
   if (routerName === 'single') {
-    next('/login')
+    if (vueCookies.isKey('wy_login_access')) {
+      next()
+    } else {
+      next('/login')
+    }
   } else {
     next()
   }
