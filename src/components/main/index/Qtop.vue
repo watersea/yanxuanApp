@@ -27,7 +27,11 @@ export default {
   },
   methods: {
     isLogin () {
-      this.$router.push('/login')
+      if (this.$store.state.userName === '登录') {
+        this.$router.push('/login')
+      } else {
+        this.$router.push('/home/single')
+      }
     }
   }
 }

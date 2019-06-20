@@ -6,7 +6,7 @@
         </div>
         <div class="user-detail">
           <p class="user-name">
-            会旋转的冬瓜
+            {{this.$store.state.userName === '登录' ? '小易xxx' : this.$store.state.userName}}
           </p>
           <p class="user-class">
             普通用户
@@ -70,7 +70,7 @@ export default{
     loginOut () {
       this.$cookies.remove('wy_login_access')
       this.$router.replace('/login')
-      this.$store.commit('getUserName','登录')
+      this.$store.commit('getUserName', '登录')
     }
   }
 }

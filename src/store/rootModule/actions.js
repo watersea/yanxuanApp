@@ -32,15 +32,8 @@ export default {
       method: 'post',
       data
     }).then(res => {
-      if (res.data.code === 200) {
-        router.push('/home/index')
-      } else {
-        Toast({
-          message: res.data.msg + '!',
-          position: 'middle',
-          duration: 1200
-        })
-      }
+      router.push('/home/index')
+      vueCookies.set('wy_login_access', JSON.stringify(data), '1d')
     }).catch(error => {
       console.log(error)
     })

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Indicator } from 'mint-ui'
+import { Indicator, Toast } from 'mint-ui'
 
 // import router from '@/router'
 const CancelToken = axios.CancelToken
@@ -35,11 +35,18 @@ axisoRequest.interceptors.request.use(function (config) {
 
 // 响应拦截器
 axisoRequest.interceptors.response.use(function (response) {
+  Indicator.close()
   // eslint-disable-next-line
-  if (response.data.code = 200) {
-    Indicator.close()
+  if (response.data.code === 200) {
+    return response
+  } else {
+    Toast({
+      message: response.data.msg,
+      position: 'middle',
+      duration: 3000
+    })
+    return Promise.reject(response.data.msg)
   }
-  return response
 }, function (error) {
   return Promise.reject(error)
 })
