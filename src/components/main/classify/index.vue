@@ -13,7 +13,8 @@
               </li>
         </ul>
       </div>
-      <div class='menu-detail'>
+      <div class='menu-detail wrapper'>
+        <div class=''>
         <img class='banner' :src="menuCon.bannerUrl" alt="">
         <div class='goods'>
           <!-- 不带分类的 -->
@@ -35,11 +36,13 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import search from '@/common/search'
+import BScroll from 'better-scroll'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers('home')
 
@@ -63,6 +66,13 @@ export default {
     this.loadingImgSrc = this.$store.state.home.loadingImgSrc
     this.getClassify()
   },
+  mounted () {
+    let wrapper = document.querySelector('.wrapper')
+    // eslint-disable-next-line
+    let scroll = new BScroll(wrapper,{
+      click: true
+    })
+  },
   methods: {
     ...mapMutations([
       'GET_CLASSIFY'
@@ -70,6 +80,9 @@ export default {
     ...mapActions({
       getClassify: 'getGoodClassify'
     }),
+    pullingDown () {
+      console.log(1)
+    },
     jumpDetail (lists, type, name) {
       let titles = []
       if (type === 0) {
