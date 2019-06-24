@@ -68,6 +68,7 @@ export default {
     // 改变navbar颜色
     changeMenu (index) {
       this.num = index
+      this.$emit('change', index)
     }
   }
 }

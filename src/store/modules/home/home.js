@@ -6,6 +6,8 @@ export default {
     loadingImgSrc: 'static/image/default.jpg',
     title: ['推荐', '居家生活', '服饰鞋包', '美食酒水', '个护清洁', '母婴亲子', '运动旅行', '数码家电', '全球特色'],
     bannerImg: [],
+    defaultData: {},
+    commonData: {},
     hots: [],
     menuList: [],
     menuCon: [],
@@ -21,8 +23,9 @@ export default {
       state.hots = data
     },
     GET_MENU (state, data) {
-      state.title = data.title
       state.bannerImg = data.bannerImg
+      state.defaultData = data.defaultData
+      state.commonData = data.commonData
     }
   },
   actions: {
@@ -57,16 +60,16 @@ export default {
         context.commit('GET_HOT', res.data)
       })
     },
-    getMenu (context, index) {
+    getMenu (context, menu) {
       axisoRequest({
-        url: '/api',
+        url: '/index.php',
         method: 'get',
         params: {
-          index
+          menu
         }
       }).then(res => {
         console.log(res)
-        context.commit('GET_MENU', res.data)
+        context.commit('GET_MENU', res.data.data)
       })
     }
   }
