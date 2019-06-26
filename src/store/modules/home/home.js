@@ -57,7 +57,7 @@ export default {
         url: '/hotSearch.php',
         method: 'get'
       }).then(res => {
-        context.commit('GET_HOT', res.data)
+        context.commit('GET_HOT', res.data.data)
       })
     },
     getMenu (context, menu) {
