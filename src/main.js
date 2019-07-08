@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import vueCookie from 'vue-cookies'
 import VueLazyload from 'vue-lazyload'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 
 // 全局指令
 // eslint-disable-next-line
@@ -29,7 +31,7 @@ Vue.use(vueCookie)
 Vue.use(VueLazyload)
 
 Vue.use(inputBlur)
-
+Vue.use(VueAwesomeSwiper)
 // 全局变量&&全局函数方法 绑定到原型上
 Vue.prototype.$globalVariate = globalVariate
 Vue.prototype.$globalFun = globalFun

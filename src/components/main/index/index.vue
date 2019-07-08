@@ -3,17 +3,18 @@
     <q-top></q-top>
     <scroll-nav-bar :title="title" v-if="title.length > 0" @change='changeMenu'></scroll-nav-bar>
     <div class='content-index'>
-      <mt-swipe class='banner-box'
-        :auto="3000"
-        :speed="600">
-        <mt-swipe-item
-          v-for="(item,index) in bannerImg"
-          :key="index">
-          <img class="banner-img" :src="item" alt="">
-        </mt-swipe-item>
-      </mt-swipe>
-      <default-tmp v-if="index==0" :defaultData="defaultData"></default-tmp>
-      <common-tmp v-else :commonData="commonData"></common-tmp>
+      <div class="scroll-content">
+        <div style="position:relative">
+          <swiper class="swiper-wrapper" :options="swiperOption">
+            <swiper-slide v-for="(item,index) in bannerImg" :key="index">
+              <img class="banner-img" :src="item" alt="">
+            </swiper-slide>
+          </swiper>
+          <div class="swiper-pagination"></div>
+        </div>
+        <default-tmp v-if="index==0" :defaultData="defaultData"></default-tmp>
+        <common-tmp v-else :commonData="commonData"></common-tmp>
+      </div>
     </div>
   </div>
 </template>
@@ -21,20 +22,28 @@
 import QTop from './Qtop'
 import defaultTmp from './defaultTmp'
 import commonTmp from './commonTmp'
-import { Swipe, SwipeItem } from 'mint-ui'
+import BScroll from 'better-scroll'
 import scrollNavBar from '@/common/scrollNavBar'
 import { createNamespacedHelpers } from 'vuex'
+import { setTimeout } from 'timers';
 const { mapState, mapActions } = createNamespacedHelpers('home')
 
 export default {
   data () {
     return {
-      index: 0
+      index: 0,
+      swiperOption: {
+        autoplay: true,
+        speed: 1000,
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          bulletActiveClass: 'my-bullet-active',
+        },
+      }
     }
   },
   components: {
-    Swipe,
-    SwipeItem,
     QTop,
     scrollNavBar,
     defaultTmp,
@@ -51,6 +60,19 @@ export default {
   created () {
     this.getMenu(0)
   },
+  mounted () {
+    // eslint-disable-next-line
+   
+    this.$nextTick(() => {
+      let wrapper = document.querySelector('.content-index')
+      /* eslint-disable no-new */
+      new BScroll(wrapper, {
+        scrollY: true,
+        click: true,
+        tap: true
+      })
+    })
+  },
   methods: {
     ...mapActions([
       'getMenu'
@@ -64,6 +86,21 @@ export default {
 </script>
 <style lang="less" scoped>
   @base:37.5rem;
+  .swiper-pagination{
+    position: absolute;
+    bottom: 15/@base;
+    left: 0;
+    right: 0;
+    margin: 0 auto
+  }
+  /deep/ .my-bullet-active{
+    background: red;
+    opacity: 1;
+
+  }
+  /deep/ .swiper-pagination-bullet{
+    margin-right: 5px
+  }
   .main{
     display: flex;
     flex-direction: column;
@@ -77,7 +114,7 @@ export default {
       height: 185/@base
   }
   .content-index{
-    overflow-y: scroll;
+    overflow-y: hidden;
     flex: 1
   }
 </style>
