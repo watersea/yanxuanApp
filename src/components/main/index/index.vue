@@ -25,7 +25,6 @@ import commonTmp from './commonTmp'
 import BScroll from 'better-scroll'
 import scrollNavBar from '@/common/scrollNavBar'
 import { createNamespacedHelpers } from 'vuex'
-import { setTimeout } from 'timers';
 const { mapState, mapActions } = createNamespacedHelpers('home')
 
 export default {
@@ -38,8 +37,8 @@ export default {
         loop: true,
         pagination: {
           el: '.swiper-pagination',
-          bulletActiveClass: 'my-bullet-active',
-        },
+          bulletActiveClass: 'my-bullet-active'
+        }
       }
     }
   },

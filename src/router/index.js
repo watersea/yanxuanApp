@@ -15,7 +15,7 @@ const router = new Router({
     }, {
       path: '/',
       name: 'home',
-      redirect: '/home/single',
+      redirect: '/home/shopCar',
       component: () => import('@/components/home'),
       children: [
         {
