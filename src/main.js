@@ -6,7 +6,8 @@ import vueCookie from 'vue-cookies'
 import VueLazyload from 'vue-lazyload'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
-
+import toastMessage from '@/UIcomponents/toast/index' // message 提示消息插件
+Vue.use(toastMessage)
 // 全局指令
 // eslint-disable-next-line
 import lazyImg from '@/api/globalDirective'

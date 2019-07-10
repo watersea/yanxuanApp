@@ -2,7 +2,7 @@
   <div class='shop-car'>
     <div class="header">
       <span style="flex:1;text-align:left;font-size:18px">购物车</span>
-      <span class="vouchers">领券</span>
+      <span class="vouchers" @click="show">领券</span>
     </div>
     <div class="label">
       <span>30天无忧退货</span>
@@ -15,6 +15,12 @@
 export default {
   data () {
     return {}
+  },
+  created () {
+   
+  },
+  methods: {
+   
   }
 }
 </script>
@@ -38,7 +44,7 @@ export default {
 .label{
   display: flex;
   span{
-    position: relative;  
+    position: relative;
     flex: 1;
     font-size: 12px;
     line-height: 36/@base;
@@ -55,6 +61,6 @@ export default {
     height: 5px;
     border-radius: 100%;
     border: 1px solid #666
-  } 
+  }
 }
 </style>
