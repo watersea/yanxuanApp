@@ -1,5 +1,5 @@
 <template>
-  <div class="toast" v-show="show">
+  <div class="Q-toast" v-show="show">
       <span class="iconfont" :class="icons[type]"></span>
       <span class="msg">{{message}}</span>
   </div>
@@ -22,7 +22,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-  .toast{
+  .Q-toast{
     position: fixed;
     top: 0;
     left: 0;
@@ -49,5 +49,4 @@ export default {
       font-size: 20px
     }
   }
- 
 </style>

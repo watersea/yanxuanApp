@@ -2,7 +2,7 @@
   <div class='shop-car'>
     <div class="header">
       <span style="flex:1;text-align:left;font-size:18px">购物车</span>
-      <span class="vouchers" >领券</span>
+      <span class="vouchers">领券</span>
     </div>
     <div class="label">
       <span>30天无忧退货</span>
@@ -15,12 +15,6 @@
 export default {
   data () {
     return {}
-  },
-  created () {
-   
-  },
-  methods: {
-   
   }
 }
 </script>
