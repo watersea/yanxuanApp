@@ -16,7 +16,7 @@
       </div>
       <div class="menu-box">
         <span class="item-list" v-for="(item,index) in defaultData.indexIcon" :key="index" >
-          <img :src="item.iconLink" alt="">
+          <img v-lazyImg="item.iconLink" :src="lazyImg" alt="">
           <span>{{item.title}}</span>
         </span>
       </div>
@@ -27,8 +27,8 @@
           <p class="style-title">{{item.title}}</p>
           <p class="style-desc">{{item.desc}}</p>
           <p>
-            <img :src="(item.picList)[0]" alt="">
-            <img :src="(item.picList)[1]" alt="">
+            <img v-lazyImg="(item.picList)[0]" :src="lazyImg" alt="">
+            <img v-lazyImg="(item.picList)[1]" :src="lazyImg" alt="">
           </p>
         </div>
       </div>
@@ -36,21 +36,17 @@
       <div class="private" v-if="defaultData.personTailor">
         <p class="private-label">私人订制</p>
         <div class="private-swiper">
-          <mt-swipe class='banner-box'
-            :auto="2000"
-            :speed="600">
-            <mt-swipe-item
-              class="swipe-block"
-              v-for="item in 4"
-              :key="item">
+          <swiper class="banner-box" :options="swiperOptionPrivate" v-if="isAutoPlay">
+            <swiper-slide class="swipe-block" v-for="item in 4" :key="item">
               <div class="private-item" v-for="(res,index) in personSlice(item, defaultData.personTailor)" :key="index">
-                <img :src="res.picList" alt="">
+                <img v-lazyImg="res.picList" :src="lazyImg"  alt="">
                 <p class="private-title">{{res.title}}</p>
                 <p class="private-desc">{{res.desc}}</p>
                 <p class="private-price">¥{{res.price}}</p>
               </div>
-            </mt-swipe-item>
-          </mt-swipe>
+            </swiper-slide>
+          </swiper>
+          <div class="swiper-pagination" slot="pagination"></div>
         </div>
       </div>
       <!-- 新品首发 -->
@@ -64,7 +60,7 @@
         </p>
         <div class="new-product-list">
           <div class="product-item" v-for="(item,index) in defaultData.newProduct" :key="index" v-if="index<6">
-            <img :src="item.picList" alt="">
+            <img v-lazyImg="item.picList" :src="lazyImg"  alt="">
             <p class="product-title textLeft">{{item.title}}</p>
             <p class="product-price textLeft"> ¥{{item.price}}</p>
             <p class="product-promTag textLeft" v-if="item.promTag"> {{item.promTag}}</p>
@@ -84,7 +80,7 @@
           <div v-for="(item,index) in defaultData.popularItem" :key="index" :class="index===0 ? '':'good-common' ">
             <div v-if="index===0" class="good-first">
               <div class="good-block" style="width:40%">
-                <img width="100%" :src="item.picList" alt="">
+                <img width="100%" v-lazyImg="item.picList" :src="lazyImg" alt="">
               </div>
               <div class="good-block" style="width:60%">
                 <span class="recommend-first-promTag">{{item.promTag}}</span>
@@ -94,7 +90,7 @@
               </div>
             </div>
             <div v-else class="good-common-box">
-               <img width="100%" :src="item.picList" alt="">
+               <img width="100%" v-lazyImg="item.picList" :src="lazyImg" alt="">
                <p class="recommend-title textLeft">{{item.title}}</p>
                <p class="recommend-price textLeft"> ¥{{item.price}}</p>
                <p class="recommend-promTag textLeft" v-if="item.promTag"> {{item.promTag}}</p>
@@ -116,11 +112,11 @@
               <span>
                 {{item.title}}
               </span>
-              <img :src="item.imgUrl" alt="">
+              <img v-lazyImg="item.imgUrl" :src="lazyImg" alt="">
             </div>
             <div v-else>
               <p>{{item.title}}</p>
-              <img width="100%" :src="item.imgUrl" alt="">
+              <img width="100%" v-lazyImg="item.imgUrl" :src="lazyImg" alt="">
             </div>
           </div>
         </div>
@@ -133,7 +129,7 @@
             <p>{{item.desc}}</p>
             <p>{{item.promTag}}</p>
           </div>
-          <img :src="item.imgUrl" alt="">
+          <img v-lazyImg="item.imgUrl" :src="lazyImg" alt="">
         </div>
       </div>
       <!-- 制造商 -->
@@ -151,7 +147,7 @@
               <p class="maker-title">{{item.title}}</p>
               <p class="maker-price">{{item.price}}元起</p>
             </div>
-            <img width="100%" :src="item.imgUrl" alt="">
+            <img width="100%" v-lazyImg="item.imgUrl" :src="lazyImg" alt="">
           </div>
         </div>
       </div>
@@ -164,12 +160,14 @@
             <span class="iconfont icon-icon_arrow_right"></span>
           </span>
         </p>
-        <div class="special-content">
-          <div class="special-list" v-for="(item, index) in defaultData.specialModule" :key="index">
-            <img width="100%" :src="item.imgUrl" alt="">
-            <p>{{item.title}}</p>
-            <p class="special-desc">{{item.desc}}</p>
-          </div>
+        <div class="special-content common-scroll">
+          <swiper class="special-swiper" :options="swiperSpecial" v-if="defaultData.specialModule && isAutoPlay">
+              <swiper-slide style="width:75%" class="special-list" v-for="(item, index) in defaultData.specialModule" :key="index">
+                <img width="100%" v-lazyImg="item.imgUrl" :src="lazyImg" alt="">
+                <p>{{item.title}}</p>
+                <p class="special-desc">{{item.desc}}</p>
+              </swiper-slide>
+          </swiper>
         </div>
       </div>
       <!-- 众筹 -->
@@ -183,7 +181,7 @@
         </p>
         <div class="zhongchou-box">
           <div class="zc-list" v-for="(item,index) in defaultData.zhongChou" :key="index">
-            <img class="zcImg" :src="item.imgUrl" alt="">
+            <img class="zcImg" v-lazyImg="item.imgUrl" :src="lazyImg" alt="">
             <div class=zc-detail>
               <p class="zc-title">{{item.title}}</p>
               <p class="zc-price">¥{{item.price}}</p>
@@ -203,31 +201,66 @@
       <!-- 商品列表 -->
       <div class="goods-example">
         <div class='good-item' v-for="(item,index) in defaultData.goodsList" :key="index">
-          <img width="100%" :src="item.bannerImg" alt="">
+          <img width="100%" v-lazyImg="item.bannerImg"  :src="lazyImg" alt="">
           <div class="good-item-box">
-            <div class="good-second-list"  v-for="(res,i) in item.list" :key="i">
-              <img width="100%" :src="res.goodImg" alt="">
-              <span class="good-colorNum" v-if="Number(res.colorNum)!== 0">{{res.colorNum}}色可选</span>
-              <p class="good-name">{{res.goodName}}</p>
-              <p class="good-desc">{{res.goodDesc}}</p>
-              <p>
-                <span class="good-nowPrice">¥{{res.goodPrice}}</span>
-                <span class="good-orginPrice">¥{{res.orginPrice}}</span>
-              </p>
-          </div>
+            <swiper :options="swiperSpecial" v-if="defaultData.goodsList && isAutoPlay">
+              <swiper-slide class="good-second-list"  v-for="(res,i) in item.list" :key="i">
+                <img width="100%" v-lazyImg="res.goodImg" :src="lazyImg" alt="">
+                <span class="good-colorNum" v-if="Number(res.colorNum)!== 0">{{res.colorNum}}色可选</span>
+                <p class="good-name">{{res.goodName}}</p>
+                <p class="good-desc">{{res.goodDesc}}</p>
+                <p>
+                  <span class="good-nowPrice">¥{{res.goodPrice}}</span>
+                  <span class="good-orginPrice">¥{{res.orginPrice}}</span>
+                </p>
+              </swiper-slide>
+            </swiper>
           </div>
         </div>
       </div>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      color: ['#ebeff6', '#eaf3e7', '#f8efee', '#f9f3e5']
+      isAutoPlay: true,
+      color: ['#ebeff6', '#eaf3e7', '#f8efee', '#f9f3e5'],
+      swiperOptionPrivate: {
+        loop: true,
+        autoplay: {
+          delay: 1800,
+          disableOnInteraction: false
+        },
+        preventInteractionOnTransition: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: false,
+          bulletActiveClass: 'my-bullet-active'
+        },
+        observer: true,
+        observeParents: true
+      },
+      swiperSpecial: {
+        freeMode: true,
+        slidesPerView: 'auto',
+        spaceBetween: 20
+      }
     }
   },
   props: ['defaultData'],
+  computed: {
+    ...mapState({
+      lazyImg: state => state.home.loadingImgSrc
+    })
+  },
+  activated () {
+    this.isAutoPlay = true
+  },
+  deactivated () {
+    this.isAutoPlay = false
+  },
   methods: {
     personSlice (item, data) {
       return data.slice((item - 1) * 3, item * 3)
@@ -237,6 +270,13 @@ export default {
 </script>
 <style lang="less" scoped>
 @base:37.5rem;
+.swiper-pagination{
+    position: absolute;
+    bottom: 4/@base;
+    left: 0;
+    right: 0;
+    margin: 0 auto
+  }
 .is-active{
   background: #fff;
   opacity: 1
@@ -351,6 +391,7 @@ export default {
   }
 }
 .private-swiper{
+  position: relative;
   height: 210/@base;
   font-size: 12/@base;
   .swipe-block{
@@ -401,10 +442,12 @@ export default {
   .product-item{
     width: 32%;
     text-align: center;
-    margin-bottom: 12/@base
+    margin-bottom: 12/@base;
+    margin-top: 10/@base
   }
   .product-item:nth-child(3n-1){
-    margin: 0 2%
+    margin-left: 2%;
+    margin-right: 2%
   }
   .product-title{
     margin: 8/@base 0;
@@ -422,6 +465,7 @@ export default {
     display: inline-block;
     transform: scale(.8);
     margin-top: 8/@base;
+    margin-left: -8/@base;
     float: left
   }
   img{
@@ -487,6 +531,7 @@ export default {
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      margin-left: -10/@base;
       float: left
     }
   }
@@ -619,16 +664,12 @@ export default {
   margin-bottom: 20/@base;
   overflow: hidden;
   .special-content{
-    width: 100%;
     height:210/@base;
     white-space: nowrap;
-    overflow-x:scroll
   }
   .special-list{
     display: inline-block;
     vertical-align: middle;
-    width:75%;
-    margin-right: 20/@base;
     border-radius: 6px;
     background: #f5f5f5;
     &:last-child{
@@ -706,15 +747,13 @@ export default {
   margin-top: 20/@base;
   .good-item-box{
     width: 100%;
-    overflow-x: scroll;
     white-space: nowrap;
-    padding: 6px;
+    padding: 6/@base 6/@base 15/@base;
     box-sizing: border-box;
   }
   .good-second-list{
     display: inline-block;
     width: 120/@base;
-    margin-right: 14/@base;
     text-align: left;
     position: relative;
     img{

@@ -108,7 +108,7 @@ export default {
   }
 }
 .third-login{
-  position: absolute;
+  position: fixed;
   bottom: 5%;
   left: 0;
   width:100%;

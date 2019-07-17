@@ -67,6 +67,13 @@ export default {
     },
     // 改变navbar颜色
     changeMenu (index) {
+      // 选中状态 禁止再次触发事件
+      if(this.num == index){
+        return
+      }
+      // 函数节流
+    
+
       this.num = index
       this.$emit('change', index)
     }

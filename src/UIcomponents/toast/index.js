@@ -6,10 +6,11 @@ let ele
 let timer = null
 let duration = 2000 //  默认消失时间
 let toastMessage = (options) => {
+  console.log(options)
   // 过滤传入数据,空对象/数组/空字符串/其他非法类型数据
   if (!options || Array.isArray(options) || JSON.stringify(options) === '{}') {
     //  eslint-disable-next-line
-    throw 'Please enter the correct numeric type,only support object or string'
+    throw new Error ('Please enter the correct numeric type,only support object or string')
   }
   // 检测dom是否已经创建
   if (!instance) {

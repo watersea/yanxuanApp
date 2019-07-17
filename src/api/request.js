@@ -1,10 +1,9 @@
 import axios from 'axios'
 import { Indicator, Toast } from 'mint-ui'
-
+// import QMessage from '@/UIcomponents/toast/index'
 // import router from '@/router'
 const CancelToken = axios.CancelToken
 const source = CancelToken.source()
-
 let env = process.env.NODE_ENV
 console.log('当前项目环境====' + env)
 // eslint-disable-next-line

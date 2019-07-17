@@ -5,8 +5,8 @@ import store from './store'
 import vueCookie from 'vue-cookies'
 import VueLazyload from 'vue-lazyload'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import QMessage from '@/UIcomponents/toast/index'
 import 'swiper/dist/css/swiper.css'
-import toastMessage from '@/UIcomponents/toast/index' // message 提示消息插件
 // 全局指令
 // eslint-disable-next-line
 import lazyImg from '@/api/globalDirective'
@@ -23,14 +23,19 @@ import 'mint-ui/lib/style.css'
 import topBar from '@/common/topTab'
 
 Vue.config.productionTip = false
-// Vue.use(focus)
+
 Vue.use(mintUi)
 // vue-cookie
 Vue.use(vueCookie)
 // vue-Lazyload
-Vue.use(VueLazyload)
+Vue.use(VueLazyload, {
+  error: '/static/image/default.jpg',
+  loading: '/static/image/default.jpg'
+})
 
+// 全局方法use方式引入
 Vue.use(inputBlur)
+
 Vue.use(VueAwesomeSwiper)
 // 全局变量&&全局函数方法 绑定到原型上
 Vue.prototype.$globalVariate = globalVariate
@@ -38,7 +43,7 @@ Vue.prototype.$globalFun = globalFun
 // 全局组件注册
 Vue.component('top-bar', topBar)
 // toast组件
-Vue.use(toastMessage)
+Vue.use(QMessage)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -46,7 +46,7 @@ export default {
       margin-bottom: 16px
     }
     .msg{
-      font-size: 20px
+      font-size: 18px
     }
   }
 </style>
