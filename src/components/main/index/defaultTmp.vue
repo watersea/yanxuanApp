@@ -16,7 +16,7 @@
       </div>
       <div class="menu-box">
         <span class="item-list" v-for="(item,index) in defaultData.indexIcon" :key="index" >
-          <img v-lazyImg="item.iconLink" :src="lazyImg" alt="">
+          <img @click="jumpDetail" v-lazyImg="item.iconLink" :src="lazyImg" alt="">
           <span>{{item.title}}</span>
         </span>
       </div>
@@ -264,6 +264,9 @@ export default {
   methods: {
     personSlice (item, data) {
       return data.slice((item - 1) * 3, item * 3)
+    },
+    jumpDetail () {
+      this.$router.push('/404')
     }
   }
 }

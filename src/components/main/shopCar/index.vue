@@ -9,6 +9,12 @@
       <span>48小时快速退款</span>
       <span>满88元免邮费</span>
     </div>
+    <div class="shopcar-content">
+      <div class="shop-nothing">
+        <img width=100% src="static/image/shopCar.png" alt="">
+        <p style="color:#999">购物车空空如也～～</p>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -27,6 +33,8 @@ export default {
 <style scoped lang="less">
 @base: 37.5rem;
 .shop-car{
+  display: flex;
+  flex-direction: column;
   height: 100%;
   background: #f4f4f4
 }
@@ -61,6 +69,14 @@ export default {
     height: 5px;
     border-radius: 100%;
     border: 1px solid #666
+  }
+}
+.shopcar-content{
+  flex: 1;
+  .shop-nothing{
+    width:128/@base;
+    height: 170/@base;
+    margin: 150/@base auto 0
   }
 }
 </style>

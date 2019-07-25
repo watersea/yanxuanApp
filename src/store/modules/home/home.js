@@ -11,7 +11,8 @@ export default {
     hots: [],
     menuList: [],
     menuCon: [],
-    isSecond: false
+    isSecond: false,
+    knowGood: []
   },
   mutations: {
     GET_CLASSIFY (state, data) {
@@ -26,6 +27,9 @@ export default {
       state.bannerImg = data.bannerImg
       state.defaultData = data.defaultData
       state.commonData = data.commonData
+    },
+    GET_KNOW_GOOD (state, data) {
+      state.knowGood = data
     }
   },
   actions: {
@@ -70,6 +74,18 @@ export default {
       }).then(res => {
         console.log(res)
         context.commit('GET_MENU', res.data.data)
+      })
+    },
+    getKnowGood (context, index) {
+      axisoRequest({
+        url: '/knowGood.php',
+        method: 'get',
+        params: {
+          index
+        }
+      }).then(res => {
+        console.log(res)
+        context.commit('GET_KNOW_GOOD', res.data.data)
       })
     }
   }

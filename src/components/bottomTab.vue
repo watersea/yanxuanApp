@@ -5,7 +5,7 @@
       :key="index"
       tag='div'
       class="menu-block"
-      :to="item.link">
+      :to="'/home/'+item.link">
       <span class="iconfont" :class="item.icon"></span>
       <span>{{item.name}}</span>
     </router-link>
@@ -57,6 +57,8 @@ export default {
     padding-bottom:6/@base;
     box-sizing: border-box;
     border-top:1px solid #ccc;
+    background: #fff;
+    z-index: 999;
     .menu-block{
       flex: 1
     }

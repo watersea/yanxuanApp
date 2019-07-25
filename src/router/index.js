@@ -15,7 +15,7 @@ const router = new Router({
     }, {
       path: '/',
       name: 'home',
-      redirect: '/home/shopCar',
+      redirect: '/home/goods',
       component: () => import('@/components/home'),
       children: [
         {
@@ -29,7 +29,45 @@ const router = new Router({
         }, {
           path: '/home/goods',
           name: 'goods',
-          component: () => import('@/components/main/goods/index')
+          redirect: '/home/goods/recommend',
+          component: () => import('@/components/main/goods/index'),
+          children: [
+            {
+              path: '/home/goods/recommend',
+              name: 'goodsRecommend',
+              component: () => import('@/components/main/goods/view/recommend')
+            },
+            {
+              path: '/home/goods/purchasing',
+              name: 'goodsPurchasing',
+              component: () => import('@/components/main/goods/view/purchasing')
+            },
+            {
+              path: '/home/goods/buy',
+              name: 'goodsBuy',
+              component: () => import('@/components/main/goods/view/buy')
+            },
+            {
+              path: '/home/goods/bask',
+              name: 'goodsBask',
+              component: () => import('@/components/main/goods/view/bask')
+            },
+            {
+              path: '/home/goods/diary',
+              name: 'goodsDiary',
+              component: () => import('@/components/main/goods/view/diary')
+            },
+            {
+              path: '/home/goods/doyen',
+              name: 'goodsDoyen',
+              component: () => import('@/components/main/goods/view/doyen')
+            },
+            {
+              path: '/home/goods/index',
+              name: 'goodsIndex',
+              component: () => import('@/components/main/goods/view/home')
+            }
+          ]
         }, {
           path: '/home/shopCar',
           name: 'shopCar',

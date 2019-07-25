@@ -4,8 +4,10 @@ import router from './router'
 import store from './store'
 import vueCookie from 'vue-cookies'
 import VueLazyload from 'vue-lazyload'
+import VirtualCollection from 'vue-virtual-collection'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import QMessage from '@/UIcomponents/toast/index'
+
 import 'swiper/dist/css/swiper.css'
 // 全局指令
 // eslint-disable-next-line
@@ -32,6 +34,8 @@ Vue.use(VueLazyload, {
   error: '/static/image/default.jpg',
   loading: '/static/image/default.jpg'
 })
+// 瀑布流
+Vue.use(VirtualCollection)
 
 // 全局方法use方式引入
 Vue.use(inputBlur)

@@ -7,7 +7,7 @@
         <div style="position:relative">
           <swiper class="swiper-wrapper" ref="swiperBanner" :options="swiperOptionBanner" :key="bannerImgToString(bannerImg)" v-if="bannerImg.length > 0 && isAutoPlay">
             <swiper-slide v-for="(item,index) in bannerImg" :key="index">
-              <img class="banner-img" :src="item" alt="">
+              <img @click="$router.push('/404')" class="banner-img" :src="item" alt="">
             </swiper-slide>
           </swiper>
           <div class="swiper-pagination-banner" slot="pagination"></div>
